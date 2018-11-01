@@ -15,7 +15,12 @@
         </div>
         <div class="form-group">
           <label>To:</label>
-          {{input class="form-control" placeholder="City or Airport" value=to}}
+          {{input 
+            class="form-control" 
+            placeholder="City or Airport" 
+            value=to 
+            disabled=(unless isValidFrom "disabled")
+          }}
         </div>
       </div>
     </div>
@@ -36,6 +41,7 @@
             class="form-control" 
             placeholder="Returning date"
             startDate=departing
+            disabled=(unless isValidDeparting "disabled")
           }}
         </div>
       </div>
@@ -43,7 +49,7 @@
   </div>
   <button 
     class="btn btn-success"
-    disabled={{unless isValid "disabled"}}
+    disabled={{unless isValidForm "disabled"}}
     {{action "searchFlights"}} 
   >
     Search flights
