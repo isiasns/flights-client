@@ -1,1 +1,60 @@
-<h2>Search flights</h2>
+<h1>Search flights</h1>
+<p class="well">Search flights by city, airport, departing and returning date</p>
+<div class="form">
+  <div class="row">
+    <div class="column">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>From:</label>
+          {{input
+            class="form-control" 
+            placeholder="City or Airport" 
+            value=from 
+            autofocus="autofocus"
+          }}
+        </div>
+        <div class="form-group">
+          <label>To:</label>
+          {{input class="form-control" placeholder="City or Airport" value=to}}
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Departing:</label>
+          {{bootstrap-datepicker
+            value=departing 
+            class="form-control" 
+            placeholder="Departing date"
+          }}
+        </div>
+        <div class="form-group">
+          <label>Returning:</label>
+          {{bootstrap-datepicker
+            value=returning 
+            class="form-control" 
+            placeholder="Returning date"
+            startDate=departing
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <button 
+    class="btn btn-success"
+    disabled={{unless isValid "disabled"}}
+    {{action "searchFlights"}} 
+  >
+    Search flights
+  </button>
+  {{#if responseMessage}}
+    <div class="col-md-6">
+      <br>
+      <div class="alert alert-success">
+        <h4>Thank you! Your message is sent.</h4>
+        <p>{{responseMessage}}</p>
+      </div>
+    </div>
+  {{/if}}
+</div>
