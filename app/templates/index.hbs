@@ -5,6 +5,28 @@
     <div class="column">
       <div class="col-md-6">
         <div class="form-group">
+          {{#radio-button
+            value="one-way"
+            groupValue=flightType
+            changed="flightTypeToggled"
+          }}
+            One way
+          {{/radio-button}}
+          {{#radio-button
+            value="round-trip"
+            groupValue=flightType
+            changed="flightTypeToggled"
+          }}
+            Round trip
+          {{/radio-button}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <div class="col-md-6">
+        <div class="form-group">
           <label>From:</label>
           {{input
             class="form-control" 
@@ -29,7 +51,7 @@
         <div class="form-group">
           <label>Departing:</label>
           {{bootstrap-datepicker
-            value=departing 
+            value=departingDate 
             class="form-control" 
             placeholder="Departing date"
             autoclose=true
@@ -38,11 +60,11 @@
         <div class="form-group">
           <label>Returning:</label>
           {{bootstrap-datepicker
-            value=returning 
+            value=returningDate 
             class="form-control" 
             placeholder="Returning date"
-            startDate=departing
-            disabled=(unless isValidDeparting "disabled")
+            startDate=departingDate
+            disabled=(unless isValidDepartingAndRoundTrip "disabled")
             autoclose=true
           }}
         </div>
@@ -51,7 +73,7 @@
   </div>
   <button 
     class="btn btn-success"
-    disabled={{unless isValidForm "disabled"}}
+    disabled={{unless isValidSearch "disabled"}}
     {{action "searchFlights"}} 
   >
     Search flights

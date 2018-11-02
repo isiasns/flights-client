@@ -1,16 +1,22 @@
 import Controller from '@ember/controller';
-import { and, notEmpty } from '@ember/object/computed'
+import { and, notEmpty, or, equal } from '@ember/object/computed'
 
 export default Controller.extend({
+  flightType: "one-way",
   from: "",
   to: "",
-  departing: "",
-  returning: "",
+  departingDate: "",
+  returningDate: "",
   isValidFrom: notEmpty("from"),
   isValidTo: notEmpty("to"),
-  isValidDeparting: notEmpty("departing"),
-  isValidReturning: notEmpty("returning"),
-  isValidForm: and("isValidFrom", "isValidTo", "isValidDeparting", "isValidReturning"),
+  isValidDeparting: notEmpty("departingDate"), 
+  isValidReturning: notEmpty("returningDate"),
+  isValidOneWay: equal("flightType", "one-way"),
+  isValidRoundTrip: equal("flightType", "round-trip"),
+  isValidOneWaySearch: and("isValidFrom", "isValidTo", "isValidDeparting", "isValidOneWay"),
+  isValidRoundTripSearch: and("isValidFrom", "isValidTo", "isValidDeparting", "isValidReturning", "isValidRoundTrip"),
+  isValidDepartingAndRoundTrip: and("isValidDeparting", "isValidRoundTrip"),
+  isValidSearch: or("isValidOneWaySearch", "isValidRoundTripSearch"),
   airlines: [],
   airports: [],
   departings: [],
@@ -23,6 +29,9 @@ export default Controller.extend({
   }.on("init"),
   actions: {
     searchFlights() {
+    },
+    flightTypeToggled(choice) {
+      this.set("flightType", choice);
     }
   }
 });
