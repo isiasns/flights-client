@@ -5,7 +5,7 @@ export default Controller.extend({
   from: "",
   to: "",
   departing: "",
-  returningDate: "",
+  returning: "",
   isValidFrom: notEmpty("from"),
   isValidTo: notEmpty("to"),
   isValidDeparting: notEmpty("departing"),
@@ -13,6 +13,8 @@ export default Controller.extend({
   isValidForm: and("isValidFrom", "isValidTo", "isValidDeparting", "isValidReturning"),
   airlines: [],
   airports: [],
+  departings: [],
+  returnings: [],
   searchAirlines: function () {
     this.airlines = this.store.findAll("airline");
   }.on("init"),

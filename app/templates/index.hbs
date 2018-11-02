@@ -52,7 +52,7 @@
   <button 
     class="btn btn-success"
     disabled={{unless isValidForm "disabled"}}
-    {{!-- {{action "searchFlights"}}  --}}
+    {{action "searchFlights"}} 
   >
     Search flights
   </button>
@@ -66,5 +66,9 @@
     </div>
   {{/if}}
 </div>
-{{departings-table}}
-{{returnings-table}}
+{{#if departings}}
+  {{departings-table}}
+{{/if}}
+{{#if returnings}}
+  {{returnings-table}}
+{{/if}}
