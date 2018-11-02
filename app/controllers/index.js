@@ -11,9 +11,16 @@ export default Controller.extend({
   isValidDeparting: notEmpty("departing"),
   isValidReturning: notEmpty("returning"),
   isValidForm: and("isValidFrom", "isValidTo", "isValidDeparting", "isValidReturning"),
+  airlines: [],
+  airports: [],
+  searchAirlines: function () {
+    this.airlines = this.store.findAll("airline");
+  }.on("init"),
+  searchAirports: function () {
+    this.airports = this.store.findAll("airport");
+  }.on("init"),
   actions: {
     searchFlights() {
-      console.log(this.isValidFrom, this.isValidTo, this.isValidDeparting, this.isValidReturning)
     }
   }
 });
