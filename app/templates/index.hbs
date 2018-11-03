@@ -78,19 +78,10 @@
   >
     Search flights
   </button>
-  {{#if responseMessage}}
-    <div class="col-md-6">
-      <br>
-      <div class="alert alert-success">
-        <h4>Thank you! Your message is sent.</h4>
-        <p>{{responseMessage}}</p>
-      </div>
-    </div>
-  {{/if}}
 </div>
 {{#if departings}}
-  {{departings-table}}
+  {{departings-table departings=departings}}
 {{/if}}
 {{#if returnings}}
-  {{returnings-table}}
+  {{returnings-table returnings=returnings}}
 {{/if}}

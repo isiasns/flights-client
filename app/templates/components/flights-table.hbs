@@ -1,0 +1,20 @@
+<table class="table table-bordered" id="table-metabase">
+  <thead>
+    <tr>
+      <th>Departing</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Airline</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each flights as |flight|}}
+      <tr>
+        <td>{{flight.departureTime}}</td>
+        <td>{{flight.departureAirportFsCode.name}}</td>
+        <td>{{flight.arrivalAirportFsCode.name}}</td>
+        <td>{{flight.carrierFsCode.name}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

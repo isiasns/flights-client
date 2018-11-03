@@ -29,6 +29,10 @@ export default Controller.extend({
   }.on("init"),
   actions: {
     searchFlights() {
+      this.set("departings", this.store.query("flight", { from: this.from, to: this.to, departureYear: this.departingDate.getFullYear(), departureMonth: this.departingDate.getMonth() + 1, departureDay: this.departingDate.getDate()}));
+      if (this.flightType === "round-trip") {
+        this.set("returnings", this.store.query("flight", { from: this.to, to: this.from, departureYear: this.returningDate.getFullYear(), departureMonth: this.returningDate.getMonth() + 1, departureDay: this.returningDate.getDate()}));
+      }
     },
     flightTypeToggled(choice) {
       this.set("flightType", choice);

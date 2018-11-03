@@ -9,6 +9,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('airlines');
   this.route('airports');
+  this.route('flights');
 });
 
 export default Router;
