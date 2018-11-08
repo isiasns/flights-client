@@ -17,16 +17,8 @@ export default Controller.extend({
   isValidRoundTripSearch: and("isValidFrom", "isValidTo", "isValidDeparting", "isValidReturning", "isValidRoundTrip"),
   isValidDepartingAndRoundTrip: and("isValidDeparting", "isValidRoundTrip"),
   isValidSearch: or("isValidOneWaySearch", "isValidRoundTripSearch"),
-  airlines: [],
-  airports: [],
   departings: [],
   returnings: [],
-  searchAirlines: function () {
-    this.airlines = this.store.findAll("airline");
-  }.on("init"),
-  searchAirports: function () {
-    this.airports = this.store.findAll("airport");
-  }.on("init"),
   actions: {
     searchFlights() {
       this.set("departings", this.store.query("flight", { from: this.from, to: this.to, departureYear: this.departingDate.getFullYear(), departureMonth: this.departingDate.getMonth() + 1, departureDay: this.departingDate.getDate()}));
